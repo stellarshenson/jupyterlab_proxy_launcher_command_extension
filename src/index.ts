@@ -124,6 +124,16 @@ class ProxyLauncherDialogBody extends Widget {
     checkboxContainer.appendChild(this._newBrowserTabCheckbox);
     checkboxContainer.appendChild(checkboxLabel);
 
+    // Description text
+    const descriptionText = document.createElement('div');
+    descriptionText.textContent =
+      'Connect to a service running on the specified port via jupyter-server-proxy.';
+    descriptionText.style.fontSize = '12px';
+    descriptionText.style.color = 'var(--jp-ui-font-color2)';
+    descriptionText.style.marginTop = '15px';
+    descriptionText.style.paddingTop = '10px';
+    descriptionText.style.borderTop = '1px solid var(--jp-border-color2)';
+
     // Assemble container
     container.appendChild(portLabel);
     container.appendChild(this._portInput);
@@ -132,6 +142,7 @@ class ProxyLauncherDialogBody extends Widget {
     container.appendChild(this._pathInput);
     container.appendChild(pathHelper);
     container.appendChild(checkboxContainer);
+    container.appendChild(descriptionText);
 
     this.node.appendChild(container);
   }

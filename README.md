@@ -30,14 +30,15 @@ JupyterLab extension providing a command to launch jupyter-server-proxy connecti
 
 When calling the command programmatically, the following arguments are supported:
 
-| Argument | Type | Description |
-|----------|------|-------------|
-| `default_port` | number | Pre-fill port input |
-| `default_path` | string | Pre-fill path suffix input |
-| `default_newBrowserTab` | boolean | Pre-check the browser tab checkbox |
-| `title` | string | Custom title for the JupyterLab tab |
+| Argument                | Type    | Description                         |
+| ----------------------- | ------- | ----------------------------------- |
+| `default_port`          | number  | Pre-fill port input                 |
+| `default_path`          | string  | Pre-fill path suffix input          |
+| `default_newBrowserTab` | boolean | Pre-check the browser tab checkbox  |
+| `title`                 | string  | Custom title for the JupyterLab tab |
 
 Example:
+
 ```typescript
 app.commands.execute('proxy-launcher:open', {
   default_port: 8501,
