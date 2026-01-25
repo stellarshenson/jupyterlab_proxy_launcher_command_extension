@@ -24,3 +24,6 @@ This journal tracks substantive work on documents, diagrams, and documentation c
 
 7. **Task - Fix CI repository URL** (v1.0.13): Fixed package.json repository configuration for jupyter-releaser<br>
    **Result**: CI check-release workflow failed with "package.json does not define a 'repository.url' matching the cloned repository". Fixed `package.json` by updating `repository.url` from `.git` to full GitHub URL `https://github.com/stellarshenson/jupyterlab_proxy_launcher_command_extension.git`. Also fixed `homepage` and `bugs.url` fields to point to correct GitHub repository URLs. Configured Playwright MCP server at account level in `~/.claude.json` for browser automation.
+
+8. **Task - README documentation assets** (v1.0.14): Added screenshot, launcher icon, and documentation improvements<br>
+   **Result**: Added modal dialog screenshot at `.resources/screenshot-modal.png` displayed above Features section. Moved `proxy.svg` to `.resources/` directory and added "Launcher Icon" section in README for custom launcher implementations. Added self-deprecating comment below Features section acknowledging the extension's simplicity while noting the effort in proper JupyterLab integration with validation, keyboard shortcuts, and polished UX.

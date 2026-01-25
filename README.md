@@ -9,8 +9,6 @@
 
 JupyterLab extension providing a command to launch jupyter-server-proxy connections via modal dialog, opening proxied services in either a JupyterLab tab or new browser window.
 
-> Yes, this extension basically just opens a URL. But it does it with *style* and a modal dialog.
-
 ![](.resources/screenshot-modal.png)
 
 ## Features
@@ -21,6 +19,8 @@ JupyterLab extension providing a command to launch jupyter-server-proxy connecti
 - **Command palette** - Access via "Open Proxy Launcher" in the Proxy category
 - **Keyboard shortcut** - `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
 - **Programmatic API** - Call with arguments to pre-fill dialog values
+
+> Yes, at its core this extension just constructs a URL and opens it. Revolutionary stuff. But somewhere between "I could write this in 5 minutes" and actually having a polished, reusable command with validation, keyboard shortcuts, and proper JupyterLab integration - well, that's where the mass hours went. You're welcome.
 
 ## Usage
 
@@ -53,9 +53,7 @@ app.commands.execute('proxy-launcher:open', {
 
 ## Launcher Icon
 
-If you're building a custom launcher that uses this extension, feel free to use the included proxy icon:
-
-![](.resources/proxy.svg)
+If you're building a custom launcher that uses this extension, feel free to use the included [proxy icon](.resources/proxy.svg).
 
 ## Requirements
 
