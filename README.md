@@ -9,6 +9,10 @@
 
 JupyterLab extension providing a command to launch jupyter-server-proxy connections via modal dialog, opening proxied services in either a JupyterLab tab or new browser window.
 
+> Yes, this extension basically just opens a URL. But it does it with *style* and a modal dialog.
+
+![](.resources/screenshot-modal.png)
+
 ## Features
 
 - **Modal dialog** - Configure port, path suffix, and target (JupyterLab tab or browser window)
@@ -46,6 +50,12 @@ app.commands.execute('proxy-launcher:open', {
   title: 'Streamlit App'
 });
 ```
+
+## Launcher Icon
+
+If you're building a custom launcher that uses this extension, feel free to use the included proxy icon:
+
+![](.resources/proxy.svg)
 
 ## Requirements
 
