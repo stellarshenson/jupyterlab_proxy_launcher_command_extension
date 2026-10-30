@@ -60,7 +60,7 @@ If you're building a custom launcher that uses this extension, feel free to use 
 
 ## Requirements
 
-- JupyterLab >= 4.0.0
+- JupyterLab >= 4.6.0
 - jupyter-server-proxy
 
 ## Install
