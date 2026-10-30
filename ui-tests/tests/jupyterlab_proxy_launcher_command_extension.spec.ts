@@ -19,7 +19,7 @@ test('should emit an activation console message', async ({ page }) => {
     logs.filter(
       s =>
         s ===
-        'JupyterLab extension jupyterlab_proxy_launcher_command_extension is activated!'
+        'JupyterLab extension @stellarshenson/jupyterlab-proxy-launcher-command-extension is activated!'
     )
   ).toHaveLength(1);
 });

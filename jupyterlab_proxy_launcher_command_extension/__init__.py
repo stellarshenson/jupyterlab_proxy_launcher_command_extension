@@ -12,5 +12,5 @@ except ImportError:
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
-        "dest": "jupyterlab_proxy_launcher_command_extension"
+        "dest": "@stellarshenson/jupyterlab-proxy-launcher-command-extension"
     }]

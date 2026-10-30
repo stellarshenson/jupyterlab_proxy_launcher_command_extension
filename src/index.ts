@@ -14,7 +14,8 @@ const COMMAND_ID = 'proxy-launcher:open';
 /**
  * Plugin ID
  */
-const PLUGIN_ID = 'jupyterlab_proxy_launcher_command_extension:plugin';
+const PLUGIN_ID =
+  '@stellarshenson/jupyterlab-proxy-launcher-command-extension:plugin';
 
 /**
  * Interface for dialog form values
@@ -204,7 +205,7 @@ class ProxyIFrameWidget extends Widget {
 }
 
 /**
- * Initialization data for the jupyterlab_proxy_launcher_command_extension extension.
+ * Initialization data for the @stellarshenson/jupyterlab-proxy-launcher-command-extension extension.
  */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
@@ -214,7 +215,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
   optional: [ICommandPalette],
   activate: (app: JupyterFrontEnd, palette: ICommandPalette | null) => {
     console.log(
-      'JupyterLab extension jupyterlab_proxy_launcher_command_extension is activated!'
+      'JupyterLab extension @stellarshenson/jupyterlab-proxy-launcher-command-extension is activated!'
     );
 
     const { commands, shell } = app;
