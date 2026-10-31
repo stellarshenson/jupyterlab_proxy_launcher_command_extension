@@ -12,6 +12,6 @@ labextension_name: '@stellarshenson/jupyterlab-proxy-launcher-command-extension'
 project_short_description: Jupyterlab commands to launch jupyterlab proxy to a given
     port (modal window) and lauch it either as new jupyterlab tab or new browser tab
 python_name: jupyterlab_proxy_launcher_command_extension
-repository: ''
+repository: https://github.com/stellarshenson/jupyterlab_proxy_launcher_command_extension
 test: true
 
