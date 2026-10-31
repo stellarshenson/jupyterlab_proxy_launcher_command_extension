@@ -1,6 +1,6 @@
 {
     "name": "@stellarshenson/jupyterlab-proxy-launcher-command-extension",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "description": "Jupyterlab commands to launch jupyterlab proxy to a given port (modal window) and lauch it either as new jupyterlab tab or new browser tab",
     "keywords": [
         "jupyter",
