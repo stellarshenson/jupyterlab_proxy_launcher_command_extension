@@ -166,21 +166,6 @@ class ProxyLauncherDialogBody extends Widget {
       newBrowserTab: this._newBrowserTabCheckbox.checked
     };
   }
-
-  /**
-   * Validate the port input
-   */
-  isValid(): boolean {
-    const port = parseInt(this._portInput.value, 10);
-    return !isNaN(port) && port >= 1 && port <= 65535;
-  }
-
-  /**
-   * Focus the port input on dialog open
-   */
-  onAfterAttach(): void {
-    this._portInput.focus();
-  }
 }
 
 /**
@@ -189,6 +174,8 @@ class ProxyLauncherDialogBody extends Widget {
 class ProxyIFrameWidget extends Widget {
   constructor(url: string, title: string) {
     super();
+    // jp-IFrame: JupyterLab covers the iframe while a splitter or tab is dragged
+    this.addClass('jp-IFrame');
     this.addClass('jp-ProxyLauncher-iframe');
     this.id = `proxy-iframe-${Date.now()}`;
     this.title.label = title;
@@ -258,6 +245,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
         const result = await showDialog({
           title: 'Proxy Launcher',
           body: dialogBody,
+          // the Dialog focuses its default button after the body is attached
+          focusNodeSelector: 'input[type="number"]',
           buttons: [Dialog.cancelButton(), Dialog.okButton({ label: 'Open' })]
         });
 

@@ -105,3 +105,85 @@ test('should validate port input', async ({ page }) => {
   // Close error dialog
   await errorDialog.locator('button:has-text("OK")').click();
 });
+
+test('should take a port typed right after the shortcut and open a JupyterLab tab', async ({
+  page
+}) => {
+  await page.goto();
+
+  await page.keyboard.press('Control+Shift+P');
+  const dialog = page.locator('.jp-Dialog');
+  await expect(dialog.locator('input[type="number"]')).toBeFocused();
+
+  await page.keyboard.type('8501');
+  await page.keyboard.press('Enter');
+
+  // jp-IFrame keeps splitter and tab drags working across the iframe
+  await expect(
+    page.locator('.jp-ProxyLauncher-iframe.jp-IFrame > iframe')
+  ).toHaveAttribute('src', /\/proxy\/8501\/$/);
+  await expect(
+    page.locator('.lm-DockPanel-tabBar .lm-TabBar-tabLabel', {
+      hasText: 'Proxy :8501'
+    })
+  ).toBeVisible();
+});
+
+test('should pre-fill the dialog from command arguments', async ({ page }) => {
+  await page.goto();
+
+  // Not awaited: the command resolves when the dialog closes
+  await page.evaluate(() => {
+    void (window as any).jupyterapp.commands.execute('proxy-launcher:open', {
+      default_port: 8501,
+      default_path: 'api/docs',
+      title: 'Streamlit App'
+    });
+  });
+
+  const dialog = page.locator('.jp-Dialog');
+  await expect(dialog.locator('input[type="number"]')).toHaveValue('8501');
+  await expect(dialog.locator('input[type="text"]')).toHaveValue('api/docs');
+  await expect(dialog.locator('input[type="checkbox"]')).not.toBeChecked();
+  await dialog.locator('button:has-text("Open")').click();
+
+  await expect(
+    page.locator('.jp-ProxyLauncher-iframe > iframe')
+  ).toHaveAttribute('src', /\/proxy\/8501\/api\/docs$/);
+  await expect(
+    page.locator('.lm-DockPanel-tabBar .lm-TabBar-tabLabel', {
+      hasText: 'Streamlit App'
+    })
+  ).toBeVisible();
+});
+
+test('should open the proxied service in a new browser tab', async ({
+  page
+}) => {
+  await page.goto();
+
+  // Record window.open: the test asserts the address, not the proxied page
+  await page.evaluate(() => {
+    window.open = (url, target) => {
+      (window as any).proxyLauncherOpened = [String(url), target];
+      return null;
+    };
+    void (window as any).jupyterapp.commands.execute('proxy-launcher:open', {
+      default_port: 8501,
+      default_newBrowserTab: true
+    });
+  });
+
+  const dialog = page.locator('.jp-Dialog');
+  await expect(dialog.locator('input[type="checkbox"]')).toBeChecked();
+
+  await dialog.locator('button:has-text("Open")').click();
+  await expect(dialog).not.toBeVisible();
+
+  const [url, target] = await page.evaluate(
+    () => (window as any).proxyLauncherOpened
+  );
+  expect(url).toMatch(/\/proxy\/8501\/$/);
+  expect(target).toBe('_blank');
+  await expect(page.locator('.jp-ProxyLauncher-iframe')).toHaveCount(0);
+});
