@@ -2,6 +2,12 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## [1.0.22] - 2026-11-13
+
+### Fixed
+
+- Focus the port input and keep drags working over the proxy iframe
+
 ## [1.0.19] - 2026-10-31
 
 ### Changed
